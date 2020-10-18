@@ -1,4 +1,4 @@
-package com.eliasnorrby.learningspringboot.learningspringboot;
+package com.eliasnorrby.learningspringboot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
