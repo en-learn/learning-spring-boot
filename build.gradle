@@ -23,8 +23,8 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
   implementation 'org.springframework.boot:spring-boot-starter-webflux'
   compileOnly 'org.projectlombok:lombok'
-  compileOnly 'org.springframework.boot:spring-boot-devtools'
-  compileOnly 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+  compile 'org.springframework.boot:spring-boot-devtools'
+  compile 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
   annotationProcessor 'org.projectlombok:lombok'
   testImplementation('org.springframework.boot:spring-boot-starter-test') {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
