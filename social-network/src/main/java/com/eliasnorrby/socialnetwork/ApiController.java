@@ -19,9 +19,9 @@ public class ApiController {
   @GetMapping(API_BASE_PATH + "/images")
   Flux<Image> images() {
     return Flux.just(
-        new Image(1, "learning-spring-boot-cover.jpg"),
-        new Image(2, "learning-spring-boot-2nd-edition-cover.jpg"),
-        new Image(3, "bazinga.jpg"));
+        new Image("1", "learning-spring-boot-cover.jpg"),
+        new Image("2", "learning-spring-boot-2nd-edition-cover.jpg"),
+        new Image("3", "bazinga.jpg"));
   }
 
   @PostMapping(API_BASE_PATH + "/images")
