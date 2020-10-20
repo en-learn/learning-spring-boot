@@ -18,7 +18,7 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class ImageService {
-  private static String UPLOAD_ROOT = "upload-dir";
+  private static final String UPLOAD_ROOT = "upload-dir";
 
   private final ResourceLoader resourceLoader;
 
@@ -28,8 +28,13 @@ public class ImageService {
 
   public Flux<Image> findAllImages() {
     try {
-      return Flux.fromIterable(Files.newDirectoryStream(Paths.get(UPLOAD_ROOT)))
+      return Flux.fromStream(Files.list(Paths.get(UPLOAD_ROOT)))
           .map(path -> new Image(path.hashCode(), path.getFileName().toString()));
+
+      /* This is the solution from the book - but it throws an IllegalStateException on loading the
+      webpage. Googled a bit and used Files.list instead. */
+      // return Flux.fromIterable(Files.newDirectoryStream(Paths.get(UPLOAD_ROOT)))
+      //     .map(path -> new Image(path.hashCode(), path.getFileName().toString()));
     } catch (IOException e) {
       return Flux.empty();
     }
