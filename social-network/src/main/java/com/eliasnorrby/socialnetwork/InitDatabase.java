@@ -16,7 +16,6 @@ public class InitDatabase {
       operations.insert(new Image("2", "learning-spring-boot-2nd-edition-cover.jpg"));
       operations.insert(new Image("3", "bazinga.jpg"));
 
-//      operations.findAll(Image.class).forEach(image -> System.out.println(image.toString()));
       operations.findAll(Image.class).forEach(System.out::println);
     };
   }

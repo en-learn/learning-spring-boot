@@ -1,5 +1,10 @@
-#logging:
-#  level:
-#    io:
-#      netty: DEBUG
-#    reactor: DEBUG
+server:
+  port: "${PORT:8080}"
+
+logging:
+  level:
+    com.eliasnorrby: DEBUG
+    org.springframework.data: TRACE
+    reactor:
+      core: TRACE
+      util: TRACE
