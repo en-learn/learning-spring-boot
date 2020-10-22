@@ -25,6 +25,7 @@ dependencies {
   // I think we need to add the standard starter as well to have access to the blocking
   // APIs for InitDatabase
   implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+  implementation 'org.springframework.boot:spring-boot-starter-actuator'
   implementation 'org.springframework.boot:spring-boot-devtools'
   implementation 'org.synchronoss.cloud:nio-multipart-parser:1.1.0'
   compileOnly 'org.projectlombok:lombok'

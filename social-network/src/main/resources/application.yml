@@ -8,3 +8,14 @@ logging:
     reactor:
       core: TRACE
       util: TRACE
+
+management:
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: '*'
+spring:
+  output:
+    ansi:
+      enabled: always
