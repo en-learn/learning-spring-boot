@@ -1,11 +1,13 @@
 package com.eliasnorrby.socialnetwork;
 
+import io.micrometer.core.instrument.MeterRegistry;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
@@ -18,16 +20,13 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
+@RequiredArgsConstructor
 public class ImageService {
   private static final String UPLOAD_ROOT = "upload-dir";
 
   private final ResourceLoader resourceLoader;
   private final ImageRepository imageRepository;
-
-  public ImageService(ResourceLoader resourceLoader, ImageRepository imageRepository) {
-    this.resourceLoader = resourceLoader;
-    this.imageRepository = imageRepository;
-  }
+  private final MeterRegistry meterRegistry;
 
   public Flux<Image> findAllImages() {
     return imageRepository.findAll().log("findAll");
@@ -65,7 +64,13 @@ public class ImageService {
                       .flatMap(file::transferTo)
                       .log("createImage-copy");
 
-              return Mono.when(saveDatabaseImage, copyFile).log("createImage-when");
+              Mono<Void> countFile =
+                  Mono.fromRunnable(
+                      () -> meterRegistry
+                          .summary("files.uploaded.bytes")
+                          .record(Paths.get(UPLOAD_ROOT, file.filename()).toFile().length()));
+
+              return Mono.when(saveDatabaseImage, copyFile, countFile).log("createImage-when");
             })
         .log("createImage-flatMap")
         .then()
