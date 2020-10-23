@@ -1,7 +1,10 @@
 package com.eliasnorrby.socialnetwork;
 
+import com.eliasnorrby.socialnetwork.images.CommentReaderRepository;
 import com.eliasnorrby.socialnetwork.images.ImageService;
 import java.io.IOException;
+import java.util.HashMap;
+import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +21,14 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
   private static final String BASE_PATH = "/images";
   private static final String FILENAME = "{filename:.+}";
 
   private final ImageService imageService;
-
-  public HomeController(ImageService imageService) {
-    this.imageService = imageService;
-  }
+  private final CommentReaderRepository repository;
 
   @GetMapping(value = BASE_PATH + "/" + FILENAME + "/raw", produces = MediaType.IMAGE_JPEG_VALUE)
   @ResponseBody
@@ -59,7 +60,18 @@ public class HomeController {
 
   @GetMapping("/")
   public Mono<String> index(Model model) {
-    model.addAttribute("images", imageService.findAllImages());
+    model.addAttribute("images", imageService
+      .findAllImages()
+      .flatMap(image ->
+        Mono.just(image)
+      .zipWith(repository.findByImageId(
+        image.getId()).collectList() ))
+      .map(imageAndComments -> new HashMap<String, Object>(){{
+        put("id", imageAndComments.getT1().getId());
+        put("name", imageAndComments.getT1().getName());
+        put("comments", imageAndComments.getT2());
+      }})
+    );
     model.addAttribute("extra", "DevTools can also detect code changes");
     return Mono.just("index");
   }

@@ -23,6 +23,7 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
   implementation 'org.springframework.boot:spring-boot-starter-webflux'
   implementation 'org.springframework.boot:spring-boot-starter-data-mongodb-reactive'
+  implementation 'org.springframework.boot:spring-boot-starter-amqp'
   // I think we need to add the standard starter as well to have access to the blocking
   // APIs for InitDatabase
   implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
