@@ -43,7 +43,7 @@
       <td>
         <form th:method="post" th:action="@{'/comments'}">
           <input type="text" name="comment" value="" />
-          <input type="text" name="imageId" th:value="${image.id}" />
+          <input name="imageId" th:value="${image.id}" type="hidden" />
           <input type="submit" />
         </form>
       </td>
