@@ -1,6 +1,8 @@
 package com.eliasnorrby.socialnetwork;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import com.eliasnorrby.socialnetwork.images.Image;
 import org.junit.jupiter.api.Test;
 
 public class ImageTests {

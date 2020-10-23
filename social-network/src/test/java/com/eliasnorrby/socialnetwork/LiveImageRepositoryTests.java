@@ -2,6 +2,8 @@ package com.eliasnorrby.socialnetwork;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.eliasnorrby.socialnetwork.images.Image;
+import com.eliasnorrby.socialnetwork.images.ImageRepository;
 import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,7 +18,8 @@ import reactor.test.StepVerifier;
 @DataMongoTest(excludeAutoConfiguration = EmbeddedMongoAutoConfiguration.class)
 public class LiveImageRepositoryTests {
 
-  @Autowired ImageRepository repository;
+  @Autowired
+  ImageRepository repository;
 
   @Autowired MongoOperations operations;
 

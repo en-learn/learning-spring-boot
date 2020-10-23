@@ -1,4 +1,4 @@
-package com.eliasnorrby.socialnetwork;
+package com.eliasnorrby.socialnetwork.images;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

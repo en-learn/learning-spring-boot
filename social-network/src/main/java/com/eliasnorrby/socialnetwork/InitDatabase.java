@@ -1,5 +1,6 @@
 package com.eliasnorrby.socialnetwork;
 
+import com.eliasnorrby.socialnetwork.images.Image;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.core.MongoOperations;

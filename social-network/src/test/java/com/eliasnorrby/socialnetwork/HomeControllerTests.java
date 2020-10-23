@@ -7,6 +7,8 @@ import static org.mockito.BDDMockito.verifyNoMoreInteractions;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
+import com.eliasnorrby.socialnetwork.images.Image;
+import com.eliasnorrby.socialnetwork.images.ImageService;
 import java.io.IOException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,8 @@ import reactor.core.publisher.Mono;
 @Import({ThymeleafAutoConfiguration.class})
 public class HomeControllerTests {
   @Autowired WebTestClient webClient;
-  @MockBean ImageService imageService;
+  @MockBean
+  ImageService imageService;
 
   @Test
   public void baseRouteShouldListAllImages() {

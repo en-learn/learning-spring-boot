@@ -1,5 +1,6 @@
 package com.eliasnorrby.socialnetwork;
 
+import com.eliasnorrby.socialnetwork.images.ImageService;
 import java.io.IOException;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.MediaType;

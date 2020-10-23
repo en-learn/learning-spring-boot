@@ -1,4 +1,4 @@
-package com.eliasnorrby.socialnetwork;
+package com.eliasnorrby.socialnetwork.images;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import java.io.File;

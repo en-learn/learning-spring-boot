@@ -1,4 +1,4 @@
-package com.eliasnorrby.socialnetwork;
+package com.eliasnorrby.socialnetwork.ops;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
